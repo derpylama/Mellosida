@@ -1,5 +1,10 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
 body{
-    /*background-color: black;*/
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,4 +32,30 @@ form{
 #button{
     width: 40%;
     align-self: center;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(72, 24, 32);
+    border-radius: 10px;
+}
+
+nav{
+    margin: 15px;
+    width: 100px;
+    height: 50px;
+}
+
+main section form{
+    width: 400px;
+    margin: 15px;
+}
+
+section{
+    width: 50%;
+    border-radius: 5px;
+    background-color: rgb(40, 13, 18);
 }
