@@ -1,24 +1,27 @@
 <?php
-$sql = new mysqli("localhost", "root", "", "mello");
-
-$result = $sql -> query("SELECT * FROM admininlogg");
-
-print_r($result -> fetch_assoc());
+$mysqli = new mysqli("localhost", "root", "", "mello");
 
 
-//$loginQuery = $sql -> prepare("SELECT * FROM `admininlogg` WHERE losenord = ? AND andvandarnamn = ?");
 
-/*
-if(!empty($_POST["anvandarnamn"]) && !empty($_POST["losenord"])){
-    $username = $_POST["anvandarnamn"];
-    $password = $_POST["losenord"];
-    
-    $loginQuery -> bind_param("ss", $username, $password);
-    
+$loginQuery = $mysqli -> prepare("SELECT * FROM `admininlogg` WHERE losenord = ? AND anvandarnamn = ?");
 
-    
+if(!empty($_POST)){
+    if(!empty($_POST["anvandarnamn"] && !empty($_POST["losenord"]))){
+        $username = $_POST["anvandarnamn"];
+        $password = $_POST["losenord"];
+    }
 }
-*/
+
+$loginQuery -> bind_param("ss", $username, $password);
+$loginQuery -> execute();
+
+$result = $loginQuery -> get_result() -> fetch_assoc();
+
+if(!empty($result)){
+    header("Location: admin.php");
+    exit();
+}
+
 ?>
 
 
