@@ -38,7 +38,7 @@ if(!empty($result)){
             <form action="" method = "POST">
                 <input type="text" name="anvandarnamn" placeholder = "användanamn">
                 <input type="text" name="losenord" placeholder = "lösenord">
-                <input type="submit" id = "button">
+                <input type="submit" class = "submit">
             </form>
         </div>
     </body>
