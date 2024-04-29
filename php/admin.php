@@ -11,17 +11,18 @@ function getDeltavlingsTid(){
     echo $id;
 }
 
-
+print_r($_GET);
 function saveAllData(){
     global $mysqli;
-
+    
+    $deltavlingsNamn = getDeltavlingsInfo("deltavling");
+    
     $saveArtist = $mysqli -> prepare("INSERT INTO artist (`namn`, `beskrivning`, `bildURL`) VALUES ( ?, ?, ?)");
     $saveBidrag = $mysqli -> prepare("INSERT INTO `bidrag`(`låtNamn`, `url`, `låtskrivare`, `artistNamn`) VALUES ( ?, ?, ?, ?)");
     $saveJoin = $mysqli -> prepare("INSERT INTO `bidragdeltavlingjoin`(`deltavlingNamnJoin`, `artistNamnJoin`) VALUES ( ?, ?)");
-    $saveTidochDatum = $mysqli -> prepare("INSERT INTO `deltavlingar`(`startTid`, `slutTid`, `datum`) VALUES ( ?, ?, ?) WHERE deltavlingsNamn = ?");
+    $saveTidochDatum = $mysqli -> prepare("UPDATE `deltavlingar` SET `startTid`= ?,`slutTid`= ? ,`datum`= ? WHERE deltavlingsNamn = '$deltavlingsNamn'");
 
-    $deltavlingsNamn = getDeltavlingsInfo("deltavling");
-
+    
     if(!empty($_POST)){
         if(!empty($_POST["artistNamn"]) && !empty($_POST["beskrivning"]) && !empty($_POST["bildURL"]) && !empty($_POST["latNamn"] && !empty($_POST["latskrivare"]) && !empty($_POST["ytURL"]))){
             $artistNamn = $_POST["artistNamn"];
@@ -48,13 +49,14 @@ function saveAllData(){
         }
     }
 
-    if(!empty($_GET)){
-        if(!empty($_GET["datum"] && !empty($_GET["startTid"] && !empty($_GET["slutTid"])))){
-            $datum = $_GET["datum"];
-            $startTid = $_GET["startTid"];
-            $slutTid = $_GET["slutTid"];
+    if(!empty($_POST)){
+        if(!empty($_POST["datum"] && !empty($_POST["startTid"] && !empty($_POST["slutTid"])))){
+            $datum = $_POST["datum"];
+            $startTid = $_POST["startTid"];
+            $slutTid = $_POST["slutTid"];
 
-
+            $saveTidochDatum -> bind_param("sss", $startTid, $slutTid, $datum);
+            $saveTidochDatum -> execute();
         }
     }
 
@@ -71,18 +73,20 @@ saveAllData();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/admin.js"></script>
 </head>
 <body>
     <main>
         <section>
             <nav>    
-                <form action="" id = "dropDown">
-                    <select name="deltavling" id="deltavling">
-                        <option value="deltavling1">Deltävling 1</option>
-                        <option value="deltavling2">Deltävling 2</option>
-                        <option value="deltavling3">Deltävling 3</option>
-                        <option value="deltavling4">Deltävling 4</option>
-                    </select>
+                <select id="deltavling">
+                    <option value="deltavling1">Deltävling 1</option>
+                    <option value="deltavling2">Deltävling 2</option>
+                    <option value="deltavling3">Deltävling 3</option>
+                    <option value="deltavling4">Deltävling 4</option>
+                </select>
+                <form action="" id = "dropDown" method = "post">
+                    
 
                     <label for="datum">Välj datum och tid för denna deltävling</label>
                     <input type="date" name="datum" id = "datum">
