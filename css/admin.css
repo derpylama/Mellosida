@@ -67,9 +67,15 @@ main{
 }
 
 nav{
-    margin: 15px;
-    width: 100px;
-    height: 50px;
+    margin: 20px;
+    width: 40%;
+    height: auto;
+}
+
+nav input , select{
+    width: 50%;
+
+    text-align: center;
 }
 
 label{
