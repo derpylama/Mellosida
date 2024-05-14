@@ -49,6 +49,7 @@ header{
     align-content: center;
     flex-direction: row;
     align-items: center;
+    background-image: image("headerimg.jpg");
 }
 header img{
     display: flex;
@@ -102,15 +103,20 @@ main div p{
     margin: 40px 0 0 200px;
 }
 footer{
+    transition: 500ms;
     width: 100%;
-    height: auto;
-    background-color: #000000;
+    height: 120px;
+    background: linear-gradient(black, rgb(41, 0, 41));
     margin: 0px;
     box-shadow: 0 -20px 20px 0 black;
 }
 footer p {
     margin-bottom: 0px;
+    margin-left: 40px;
 
+}
+footer:hover{
+    filter: brightness(200%);
 }
 /*animation för knappar som ligger i nav, header & infoscreen */
 @keyframes ButtonAnim {
