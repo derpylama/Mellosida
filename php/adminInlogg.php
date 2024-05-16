@@ -1,4 +1,7 @@
 <?php
+// Server koppling
+//$mysqli = new mysqli("bushcan.ntigskovde.se", "ntigskov_bushcan", "U8Tv5U9MMr2uaEzQ6A91", "ntigskov_bushcan");
+
 $mysqli = new mysqli("localhost", "root", "", "mello");
 
 
@@ -38,7 +41,7 @@ if(!empty($result)){
             <form action="" method = "POST">
                 <input type="text" name="anvandarnamn" placeholder = "användanamn">
                 <input type="text" name="losenord" placeholder = "lösenord">
-                <input type="submit" id = "button">
+                <input type="submit" class = "submit">
             </form>
         </div>
     </body>
