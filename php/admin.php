@@ -1,6 +1,8 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "mello");
+// Server koppling
+//$mysqli = new mysqli("bushcan.ntigskovde.se", "ntigskov_bushcan", "U8Tv5U9MMr2uaEzQ6A91", "ntigskov_bushcan");
 
+$mysqli = new mysqli("localhost", "root", "", "mello");
 
 require "funktioner.php";
 
@@ -11,7 +13,6 @@ function getDeltavlingsTid(){
     echo $id;
 }
 
-print_r($_GET);
 function saveAllData(){
     global $mysqli;
     
@@ -63,7 +64,9 @@ function saveAllData(){
 
 }
 
-saveAllData();
+if(!empty($_POST)){
+    saveAllData();
+}
 ?>
 
 <!DOCTYPE html>

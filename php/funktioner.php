@@ -1,6 +1,8 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "mello");
+// Server koppling
+//$mysqli = new mysqli("bushcan.ntigskovde.se", "ntigskov_bushcan", "U8Tv5U9MMr2uaEzQ6A91", "ntigskov_bushcan");
 
+$mysqli = new mysqli("localhost", "root", "", "mello");
 
 #Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
 function getDeltavlingsInfo($getData){
