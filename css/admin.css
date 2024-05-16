@@ -74,7 +74,6 @@ nav{
 
 nav input , select{
     width: 50%;
-
     text-align: center;
 }
 
@@ -86,4 +85,13 @@ label{
     width: 40%;
     height: 100%;
     justify-self: flex-end;
+}
+
+img{
+    width: 300px;
+    height: auto;
+}
+
+.deltagare{
+    width: 100%;
 }

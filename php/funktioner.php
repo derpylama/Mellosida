@@ -3,6 +3,9 @@ $mysqli = new mysqli("localhost", "root", "", "mello");
 
 
 #Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
+if(!empty($_GET)){
+    getDeltavlingsInfo("info");
+}
 function getDeltavlingsInfo($getData){
     global $mysqli; 
     
@@ -19,6 +22,7 @@ function getDeltavlingsInfo($getData){
 
     
     if($getData == "info"){
+        echo json_encode($getInfo -> fetch_assoc());
         return $getInfo;
     }
 

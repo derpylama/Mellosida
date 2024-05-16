@@ -1,17 +1,9 @@
 <?php
 $mysqli = new mysqli("localhost", "root", "", "mello");
 
-
 require "funktioner.php";
 
 
-function getDeltavlingsTid(){
-    global $mysqli;
-    $id = getDeltavlingsInfo("id");
-    echo $id;
-}
-
-print_r($_GET);
 function saveAllData(){
     global $mysqli;
     
@@ -49,11 +41,11 @@ function saveAllData(){
         }
     }
 
-    if(!empty($_POST)){
-        if(!empty($_POST["datum"] && !empty($_POST["startTid"] && !empty($_POST["slutTid"])))){
-            $datum = $_POST["datum"];
-            $startTid = $_POST["startTid"];
-            $slutTid = $_POST["slutTid"];
+    if(!empty($_GET)){
+        if(!empty($_GET["datum"] && !empty($_GET["startTid"] && !empty($_GET["slutTid"])))){
+            $datum = $_GET["datum"];
+            $startTid = $_GET["startTid"];
+            $slutTid = $_GET["slutTid"];
 
             $saveTidochDatum -> bind_param("sss", $startTid, $slutTid, $datum);
             $saveTidochDatum -> execute();
@@ -85,7 +77,7 @@ saveAllData();
                     <option value="deltavling3">Deltävling 3</option>
                     <option value="deltavling4">Deltävling 4</option>
                 </select>
-                <form action="" id = "dropDown" method = "post">
+                <form action="" id = "dropDown" method = "get">
                     
 
                     <label for="datum">Välj datum och tid för denna deltävling</label>
@@ -121,18 +113,7 @@ saveAllData();
         </section >
 
         <section id ="deltagarLista">
-            <?php
-                $getInfo = getDeltavlingsInfo("info");
-                
-                
-                
-                while($row = $getInfo -> fetch_assoc())
-                {
-                    print_r($row);
-                }
-                
-
-            ?>
+            
         </section>
 
 
