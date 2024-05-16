@@ -1,6 +1,6 @@
 window.onload = (e) => {
     deltavlingDropDown = document.getElementById("deltavling").value;
-    VisaDatabasinnehall(deltavlingDropDown);
+    console.log(deltavlingDropDown);
 
     deltavlingDropDown.onchange = (e) => {
         VisaDatabasinnehall(deltavlingDropDown);
