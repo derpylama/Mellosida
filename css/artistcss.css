@@ -79,8 +79,13 @@ a{
 }
 main{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     height: 850px;
+}
+
+#container{
+    
+    height: 100%;
 }
 footer{
     transition: 500ms;
@@ -150,6 +155,7 @@ footer:hover{
     margin: 10px;
     height: 50px;
     color: white;
+    z-index: 20;
     
 }
 #infoScreen:hover{
@@ -161,7 +167,7 @@ footer:hover{
 
 }
 #infoscreen.expanded{
-    max-height: 1500px;
+    max-height: 100px;
 }
 #MelloLogga{
     flex-direction: column;
