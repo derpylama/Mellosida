@@ -26,7 +26,7 @@ body{
     margin: 0px;
     padding: 0px;
     transition: 500ms;
-    animation: ButtonAnim 720s linear infinite;
+    animation: BackgroundAnim 1280s linear infinite;
     background-size: 400%;
 }
 *{
@@ -66,7 +66,7 @@ nav{
     background-color: rgb(0, 0, 0, 35%);
     transition: 500ms;
     width: 170px;
-    height: 310px;
+    height: 370px;
     margin: 0px;
     padding: 20px;
     margin-top: 20px;
@@ -75,20 +75,25 @@ nav{
 
 nav p{
     transition: 300ms;
-    margin-top: 10px;
+    margin-top: 25px;
     border-radius: 10px;
     width: 150px;
     height: 60px;   
     background-color: rgb(129, 0, 129);
     opacity: 1;
-    box-shadow: inset 0 0 30px 0 black;
+    box-shadow: 0 0 30px 0 black;
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: 2px solid #80004a;
+    outline-offset: 4px;
+    transform: skew(-10deg, 0deg);
 }
 nav p:hover{
+    transform: skew(-12deg, 0deg);
     width: 170px;
     opacity: 1;
+    outline: 2px solid #ef74bb;
 }
 main{
     display: flex;
@@ -119,7 +124,7 @@ footer:hover{
     filter: brightness(200%);
 }
 /*animation för knappar som ligger i nav, header & infoscreen */
-@keyframes ButtonAnim {
+@keyframes BackgroundAnim {
     0% {
         background-color: purple;
         background-position: 0%;
@@ -128,35 +133,6 @@ footer:hover{
         background-position: 400%;
     }
 }
-/*grid för att lägga ut knappar i header*/
-#tabs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 310px;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 10px;
-    width: 100vw;
-}
-#popout { grid-area: 1 / 1 / 3 / 2; }
-#singers { grid-area: 1 / 2 / 3 / 3; }
-#information { grid-area: 1 / 3 / 3 / 4; }
-
-#tabs div{
-    border-radius: 10px;
-    transition: 300ms;
-    background-color: purple;
-    height: 50px;
-    box-shadow: inset 0 0 30px 0 black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#tabs div:hover{
-    height: 50px;
-    scale: 1.1;
-}
 #infoScreen{
     opacity: 40%;
     width: 600px;
@@ -164,10 +140,15 @@ footer:hover{
     transition: 300ms;
     background-color: rgb(0, 0, 0);
     border-radius: 20px;
+    outline: 0px solid #000000;
+    filter: blur(2px);
 }
 #infoScreen:hover{
     scale: 1.025;
     opacity: 1;
+    outline: 3px solid #000000;
+    outline-offset: 4px;
+    filter: blur(0px);
 }
 #MelloLogga{
     flex-direction: column;
