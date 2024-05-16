@@ -4,6 +4,25 @@ $mysqli = new mysqli("localhost", "root", "", "mello");
 require "funktioner.php";
 
 
+$loginQuery = $mysqli -> prepare("SELECT * FROM admininlogg WHERE losenord = ? AND anvandarnamn = ?");
+
+if(!empty($_POST)){
+    if(!empty($_POST["anvandarnamn"] && !empty($_POST["losenord"]))){
+        $username = $_POST["anvandarnamn"];
+        $password = $_POST["losenord"];
+    }
+}
+
+$loginQuery -> bind_param("ss", $username, $password);
+$loginQuery -> execute();
+
+$result = $loginQuery -> get_result() -> fetch_assoc();
+
+if(empty($result)){
+    header("Location: admininlogg.php");
+    exit();
+}
+
 function saveAllData(){
     global $mysqli;
     

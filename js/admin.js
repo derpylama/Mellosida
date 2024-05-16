@@ -1,12 +1,12 @@
 window.onload = (e) => {
-    deltavlingDropDown = document.getElementById("deltavling").value;
-    console.log(deltavlingDropDown);
+    deltavlingDropDown = document.getElementById("deltavling");
+    VisaDatabasinnehall(deltavlingDropDown.value);
 
     deltavlingDropDown.onchange = (e) => {
-        VisaDatabasinnehall(deltavlingDropDown);
-        
+        VisaDatabasinnehall(e.target.value);
     }
 };
+
 
 function VisaDatabasinnehall(dropdownVarde){
     url = "../php/funktioner.php?deltavling=" + dropdownVarde;
@@ -15,31 +15,28 @@ function VisaDatabasinnehall(dropdownVarde){
             console.log(data);
             
             
-            div = document.createElement("div");
-            div.className = "deltagare"
-            deltagarLista.appendChild(div);
+            if(data != null){
 
-            img = document.createElement("img");
-            img.src = data["bildURL"];
+                div = document.createElement("div");
+                div.className = "deltagare"
+                deltagarLista.appendChild(div);
 
-            div.appendChild(img);
+                img = document.createElement("img");
+                img.src = data["bildURL"];
 
-            pBeskrivning = document.createElement("p");
-            pBeskrivning.innerHTML = data["beskrivning"];
-            div.appendChild(pBeskrivning);
+                div.appendChild(img);
 
-
-            /*
-            try{
-                dataKeys = Object.keys(data);
-                console.log("save");
-                dataKeys.forEach(element => {
-                    document.getElementById("deltagarLista").innerHTML += data[element];
-                });
+                pBeskrivning = document.createElement("p");
+                pBeskrivning.innerHTML = data["beskrivning"];
+                div.appendChild(pBeskrivning);
             }
-            catch{
-                console.log("test");
+            else{
+                deltagare = document.getElementsByClassName("deltagare");
+
+                deltagare[0].remove();
+
+                console.log(deltagare);
             }
-            */
+
         });
 }
