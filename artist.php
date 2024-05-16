@@ -37,9 +37,9 @@
         <div id="autoboz"></div>
     </main>
     <footer>
-        <p>för mer information:</p>
-        <p>mums</p>
-        <p>korvkakor</p>
+        <p>Maila oss:</p>
+        <p>FAQ</p>
+        <p>Melodifestivalen &copy; 2024 All rights reserved</p>
     </footer>
     <a id="AdminL" href="php/adminInlogg.php">adminInlogg</a>
 </body>

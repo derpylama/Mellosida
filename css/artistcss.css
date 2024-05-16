@@ -83,9 +83,20 @@ main{
     height: 850px;
 }
 footer{
+    transition: 500ms;
     width: 100%;
-    height: auto;
-    background-color: #7c0082;
+    height: 120px;
+    background: linear-gradient(black, rgb(41, 0, 41));
+    margin: 0px;
+    box-shadow: 0 -20px 20px 0 black;
+}
+footer p {
+    margin-bottom: 0px;
+    margin-left: 40px;
+
+}
+footer:hover{
+    filter: brightness(200%);
 }
 @keyframes ButtonAnim {
     0% {
