@@ -21,6 +21,7 @@ function getDeltavlingsInfo($getData){
 
     
     if($getData == "info"){
+        echo json_encode($getInfo -> fetch_assoc());
         return $getInfo;
     }
 
