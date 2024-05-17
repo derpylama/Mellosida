@@ -87,11 +87,10 @@ label{
     justify-self: flex-end;
 }
 
-img{
-    width: 300px;
-    height: auto;
-}
-
 .deltagare{
     width: 100%;
+}
+
+.deltagarBild{
+    width: 300px;
 }

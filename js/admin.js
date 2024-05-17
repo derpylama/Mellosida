@@ -23,12 +23,17 @@ function VisaDatabasinnehall(dropdownVarde){
 
                 img = document.createElement("img");
                 img.src = data["bildURL"];
-
-                div.appendChild(img);
+                img.className = "deltagarBild";
 
                 pBeskrivning = document.createElement("p");
                 pBeskrivning.innerHTML = data["beskrivning"];
+
+                artistNamn = document.createElement("h2");
+                artistNamn.innerHTML = data["artistNamn"];
+                
+                div.appendChild(artistNamn);
                 div.appendChild(pBeskrivning);
+                div.appendChild(img);
             }
             else{
                 deltagare = document.getElementsByClassName("deltagare");
