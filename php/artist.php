@@ -29,15 +29,12 @@
 
 
         <div id="container">
-            <div id="infoScreen"></div>
+            <?php
+                require "funktioner.php";
 
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
-            <div id="infoScreen"></div>
+                $x = getDeltavlingsInfo("info");
+                print_r($x);
+            ?>
             <div id="infoScreen"></div>
                 <div id="autoboz"></div>
         </div>
