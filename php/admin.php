@@ -7,7 +7,7 @@ require "funktioner.php";
 $loginQuery = $mysqli -> prepare("SELECT * FROM admininlogg WHERE losenord = ? AND anvandarnamn = ?");
 
 if(!empty($_POST)){
-    if(!empty($_POST["anvandarnamn"] && !empty($_POST["losenord"]))){
+    if(isset($_POST["losenord"] && $_POST["anvandarnamn"])){
         $username = $_POST["anvandarnamn"];
         $password = $_POST["losenord"];
     }
@@ -18,7 +18,7 @@ $loginQuery -> execute();
 
 $result = $loginQuery -> get_result() -> fetch_assoc();
 
-if(empty($result)){
+if(empty($result) && empty($_REQUEST["inloggad"])){
     header("Location: admininlogg.php");
     exit();
 }
@@ -96,7 +96,7 @@ saveAllData();
                     <option value="deltavling3">Deltävling 3</option>
                     <option value="deltavling4">Deltävling 4</option>
                 </select>
-                <form action="" id = "dropDown" method = "get">
+                <form action="" id="dropDown" method = "get">
                     
 
                     <label for="datum">Välj datum och tid för denna deltävling</label>
@@ -107,6 +107,8 @@ saveAllData();
 
                     <label for="slutTid">Välj slut tid</label>
                     <input type="time" name = "slutTid">
+                    <input type="hidden" name="inloggad" value="true">
+
                     <input type="submit" name="" class = "submit">
                 </form>
             </nav>
@@ -127,6 +129,7 @@ saveAllData();
                 <label for="BildUrl">Bild URL</label>
                 <input type="text" name ="bildURL" id = "BildURL">
 
+                <input type="hidden" name="inloggad" value="true">
                 <input type="submit" name="" class = "submit">
             </form>
         </section >

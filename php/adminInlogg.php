@@ -13,6 +13,7 @@
             <form action="admin.php" method = "POST">
                 <input type="text" name="anvandarnamn" placeholder = "användanamn">
                 <input type="text" name="losenord" placeholder = "lösenord">
+                <input type="hidden" name="inloggad" value="true">
                 <input type="submit" class = "submit">
             </form>
         </div>
