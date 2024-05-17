@@ -33,6 +33,8 @@
                 require "funktioner.php";
 
                 $x = getDeltavlingsInfo("info");
+                $x = json_decode($x);
+
                 print_r($x);
             ?>
             <div id="infoScreen"></div>
@@ -44,6 +46,6 @@
         <p>FAQ</p>
         <p>Melodifestivalen &copy; 2024 All rights reserved</p>
     </footer>
-    <a id="AdminL" href="php/adminInlogg.php">adminInlogg</a>
+    <a id="AdminL" href="adminInlogg.php">adminInlogg</a>
 </body>
 </html>
