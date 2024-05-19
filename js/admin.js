@@ -1,10 +1,17 @@
 window.onload = (e) => {
     deltavlingDropDown = document.getElementById("deltavling");
+    sparButton = document.getElementsByClassName("save");
     VisaDatabasinnehall(deltavlingDropDown.value);
-
+    
     deltavlingDropDown.onchange = (e) => {
         VisaDatabasinnehall(e.target.value);
     }
+
+    sparButton.forEach(element => {
+        element.onclick() = (e) => {
+
+        }
+    });
 };
 
 
@@ -44,4 +51,8 @@ function VisaDatabasinnehall(dropdownVarde){
             }
 
         });
+}
+
+function SparaAllData(deltavling){
+    
 }

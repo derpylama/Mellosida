@@ -6,10 +6,32 @@ $mysqli = new mysqli("localhost", "root", "", "mello");
 
 require "funktioner.php";
 
+
+$loginQuery = $mysqli -> prepare("SELECT * FROM admininlogg WHERE losenord = ? AND anvandarnamn = ?");
+
+if(!empty($_POST)){
+    if(!empty($_POST["losenord"] && !empty($_POST["anvandarnamn"]))){
+        $username = $_POST["anvandarnamn"];
+        $password = $_POST["losenord"];
+    }
+}
+
+$loginQuery -> bind_param("ss", $username, $password);
+$loginQuery -> execute();
+
+$result = $loginQuery -> get_result() -> fetch_assoc();
+
+if(empty($result)){
+    header("Location: admininlogg.php");
+    exit();
+}
+
+
+/*
 function saveAllData(){
     global $mysqli;
     
-    $deltavlingsNamn = getDeltavling();
+    $deltavlingsNamn = getDeltavlingsInfo("deltavling");
     
     $saveArtist = $mysqli -> prepare("INSERT INTO artist (`namn`, `beskrivning`, `bildURL`) VALUES ( ?, ?, ?)");
     $saveBidrag = $mysqli -> prepare("INSERT INTO `bidrag`(`låtNamn`, `url`, `låtskrivare`, `artistNamn`) VALUES ( ?, ?, ?, ?)");
@@ -44,7 +66,7 @@ function saveAllData(){
     }
 
     if(!empty($_POST)){
-        if(!empty($_POST["datum"] && !empty($_POST["startTid"] && !empty($_POST["slutTid"])))){
+        if(!empty($_POST["datum"]) && !empty($_POST["startTid"]) && !empty($_POST["slutTid"])){
             $datum = $_POST["datum"];
             $startTid = $_POST["startTid"];
             $slutTid = $_POST["slutTid"];
@@ -60,6 +82,7 @@ function saveAllData(){
 if(!empty($_POST)){
     saveAllData();
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +104,7 @@ if(!empty($_POST)){
                     <option value="deltavling3">Deltävling 3</option>
                     <option value="deltavling4">Deltävling 4</option>
                 </select>
-                <form action="" id = "dropDown" method = "post">
+                <form action="" id="DateTime" method = "post">
                     
 
                     <label for="datum">Välj datum och tid för denna deltävling</label>
@@ -92,7 +115,11 @@ if(!empty($_POST)){
 
                     <label for="slutTid">Välj slut tid</label>
                     <input type="time" name = "slutTid">
-                    <input type="submit" name="" class = "submit">
+
+                    <input type="hidden" name="anvandarnamn" value="<?php echo $_POST["anvandarnamn"] ?>">
+                    <input type="hidden" name="losenord" value="<?php echo $_POST["losenord"] ?>">
+
+                    <input type="submit" name="" class="submit save">
                 </form>
             </nav>
 
@@ -112,7 +139,10 @@ if(!empty($_POST)){
                 <label for="BildUrl">Bild URL</label>
                 <input type="text" name ="bildURL" id = "BildURL">
 
-                <input type="submit" name="" class = "submit">
+                <input type="hidden" name="anvandarnamn" value="<?php echo $_POST["anvandarnamn"] ?>">
+                <input type="hidden" name="losenord" value="<?php echo $_POST["losenord"] ?>">
+
+                <input type="submit" name="" class ="submit save">
             </form>
         </section >
 
