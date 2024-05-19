@@ -6,17 +6,10 @@ $mysqli = new mysqli("localhost", "root", "", "mello");
 
 require "funktioner.php";
 
-
-function getDeltavlingsTid(){
-    global $mysqli;
-    $id = getDeltavlingsInfo("id");
-    echo $id;
-}
-
 function saveAllData(){
     global $mysqli;
     
-    $deltavlingsNamn = getDeltavlingsInfo("deltavling");
+    $deltavlingsNamn = getDeltavling();
     
     $saveArtist = $mysqli -> prepare("INSERT INTO artist (`namn`, `beskrivning`, `bildURL`) VALUES ( ?, ?, ?)");
     $saveBidrag = $mysqli -> prepare("INSERT INTO `bidrag`(`låtNamn`, `url`, `låtskrivare`, `artistNamn`) VALUES ( ?, ?, ?, ?)");
@@ -124,18 +117,7 @@ if(!empty($_POST)){
         </section >
 
         <section id ="deltagarLista">
-            <?php
-                $getInfo = getDeltavlingsInfo("info");
-                
-                
-                
-                while($row = $getInfo -> fetch_assoc())
-                {
-                    print_r($row);
-                }
-                
 
-            ?>
         </section>
 
 
