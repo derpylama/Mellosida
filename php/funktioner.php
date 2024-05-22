@@ -40,15 +40,22 @@ function getDeltavlingsInfo($getData){
 }
 
 
-function saveAllData($deltavlingsNamn){
+function saveAllData(){
     global $mysqli;
     
-    $deltavlingsNamn = getDeltavlingsInfo("deltavling");
+    if(!empty($_GET["deltavling"])){
+        $deltavling = $_GET["deltavling"];
+    
+    }
+    else{
+        $deltavling = "deltavling1";
+    }
+    
     
     $saveArtist = $mysqli -> prepare("INSERT INTO artist (`namn`, `beskrivning`, `bildURL`) VALUES ( ?, ?, ?)");
     $saveBidrag = $mysqli -> prepare("INSERT INTO `bidrag`(`låtNamn`, `url`, `låtskrivare`, `artistNamn`) VALUES ( ?, ?, ?, ?)");
     $saveJoin = $mysqli -> prepare("INSERT INTO `bidragdeltavlingjoin`(`deltavlingNamnJoin`, `artistNamnJoin`) VALUES ( ?, ?)");
-    $saveTidochDatum = $mysqli -> prepare("UPDATE `deltavlingar` SET `startTid`= ?,`slutTid`= ? ,`datum`= ? WHERE deltavlingsNamn = '$deltavlingsNamn'");
+    $saveTidochDatum = $mysqli -> prepare("UPDATE `deltavlingar` SET `startTid`= ?,`slutTid`= ? ,`datum`= ? WHERE deltavlingsNamn = '$deltavling'");
 
     
     if(!empty($_POST)){
@@ -70,7 +77,7 @@ function saveAllData($deltavlingsNamn){
             $saveBidrag -> execute();
             
 
-            $saveJoin -> bind_param("ss", $deltavlingsNamn, $artistNamn);
+            $saveJoin -> bind_param("ss", $deltavling, $artistNamn);
             $saveJoin -> execute();
 
 

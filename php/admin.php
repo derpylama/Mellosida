@@ -79,10 +79,12 @@ function saveAllData(){
 
 }
 
-if(!empty($_POST)){
+if(isset($_POST["artistNamn"]) xor isset($_POST["artistNamn"])){
     saveAllData();
 }
 */
+
+
 ?>
 
 <!DOCTYPE html>

@@ -1,22 +1,31 @@
+var deltavling;
+
 window.onload = (e) => {
     deltavlingDropDown = document.getElementById("deltavling");
-    sparButton = document.getElementsByClassName("save");
+    sparButtons = document.getElementsByClassName("save");
     VisaDatabasinnehall(deltavlingDropDown.value);
+
+    if(deltavling == undefined){
+        deltavling = deltavlingDropDown.value;
+    }
     
     deltavlingDropDown.onchange = (e) => {
         VisaDatabasinnehall(e.target.value);
+        deltavling = e.target.value;
     }
 
-    sparButton.forEach(element => {
-        element.onclick() = (e) => {
+ for (var button of sparButtons) {
+    
+    button.onclick = (e) => {
+        alert(deltavling)
+    }
 
-        }
-    });
+ };
 };
 
 
 function VisaDatabasinnehall(dropdownVarde){
-    url = "../php/funktioner.php?deltavling=" + dropdownVarde;
+    url = "../php/funktioner.php?deltavling=" + {deltavling : dropdownVarde};
     deltagarLista = document.getElementById("deltagarLista")
         fetch(url).then(answer => answer.json()).then((data) =>{
             console.log(data);
