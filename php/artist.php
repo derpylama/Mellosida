@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/artistcss.css">
+    <title>artist</title>
+    <link rel="stylesheet" href="../css/artistcss.css">
 </head>
 <body>
     <header>
-        <img src="MelloLogga.png" alt="" id="MelloLogga">
-        <img src="MelloText.png" alt="" id="MelloText">
+        <img src="https://imgur.com/an401KF" alt="" id="MelloLogga">
+        <img src="https://imgur.com/wYVzGIg" alt="" id="MelloText">
     </header>
     <main>
         <nav class="prevent-select">
@@ -21,14 +21,14 @@
         </nav>
 
         <div id="container">
-            <?php
+             <?php
                 require "funktioner.php";
 
                 $x = getDeltavlingsInfo("info");
                 $x = json_decode($x);
 
                 print_r($x);
-            ?>
+             ?>
             <div id="infoScreen"></div>
                 <div id="autoboz"></div>
         </div>
