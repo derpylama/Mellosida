@@ -26,7 +26,7 @@ body{
     margin: 0px;
     padding: 0px;
     transition: 500ms;
-    animation: ButtonAnim 720s linear infinite;
+    animation: BackgroundAnim 1280s linear infinite;
     background-size: 400%;
 }
 *{
@@ -34,7 +34,8 @@ body{
     font-size: large;
     font-weight: bold;
     color: rgb(255, 255, 255);
-    text-shadow: black 0 0 20px;
+    text-shadow: rgb(0, 204, 255) 0 0 10px,
+                rgb(224, 19, 19) 0 0 10px;
 }
 header{
     display: flex;
@@ -50,6 +51,8 @@ header{
     flex-direction: row;
     align-items: center;
     background-image: image("headerimg.jpg");
+    outline: 2px solid #210a17;
+    outline-offset: 4px;
 }
 header img{
     display: flex;
@@ -66,29 +69,39 @@ nav{
     background-color: rgb(0, 0, 0, 35%);
     transition: 500ms;
     width: 170px;
-    height: 310px;
+    height: 450px;
     margin: 0px;
     padding: 20px;
     margin-top: 20px;
     border-radius: 0 10px 10px 0;
+    transform:matrix3d(10deg, 10deg) 
 }
 
 nav p{
     transition: 300ms;
-    margin-top: 10px;
+    margin-top: 25px;
     border-radius: 10px;
     width: 150px;
     height: 60px;   
-    background-color: rgb(129, 0, 129);
+    background-color: rgb(33, 17, 33);
     opacity: 1;
-    box-shadow: inset 0 0 30px 0 black;
+    box-shadow: 0 0 30px 0 black;
     display: flex;
     justify-content: center;
     align-items: center;
+    outline: 2px solid #80004a;
+    outline-offset: 4px;
+    transform: skew(-10deg, 0deg);
 }
 nav p:hover{
+    transform: skew(-12deg, 0deg);
     width: 170px;
     opacity: 1;
+    outline: 2px solid #ef74bb;
+}
+nav p:active{
+    transition: 200ms;
+    scale: 0.9;
 }
 main{
     display: flex;
@@ -119,7 +132,7 @@ footer:hover{
     filter: brightness(200%);
 }
 /*animation för knappar som ligger i nav, header & infoscreen */
-@keyframes ButtonAnim {
+@keyframes BackgroundAnim {
     0% {
         background-color: purple;
         background-position: 0%;
@@ -128,46 +141,36 @@ footer:hover{
         background-position: 400%;
     }
 }
-/*grid för att lägga ut knappar i header*/
-#tabs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 310px;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 10px;
-    width: 100vw;
-}
-#popout { grid-area: 1 / 1 / 3 / 2; }
-#singers { grid-area: 1 / 2 / 3 / 3; }
-#information { grid-area: 1 / 3 / 3 / 4; }
-
-#tabs div{
-    border-radius: 10px;
-    transition: 300ms;
-    background-color: purple;
-    height: 50px;
-    box-shadow: inset 0 0 30px 0 black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#tabs div:hover{
-    height: 50px;
-    scale: 1.1;
-}
 #infoScreen{
     opacity: 40%;
     width: 600px;
     height: 200px;
     transition: 300ms;
     background-color: rgb(0, 0, 0);
+    filter: blur(2px);
+    background: radial-gradient(circle at 100% 100%, #000000 0, #000000 15px, transparent 15px) 0% 0%/20px 20px no-repeat,
+            radial-gradient(circle at 0 100%, #000000 0, #000000 15px, transparent 15px) 100% 0%/20px 20px no-repeat,
+            radial-gradient(circle at 100% 0, #000000 0, #000000 15px, transparent 15px) 0% 100%/20px 20px no-repeat,
+            radial-gradient(circle at 0 0, #000000 0, #000000 15px, transparent 15px) 100% 100%/20px 20px no-repeat,
+            linear-gradient(#000000, #000000) 50% 50%/calc(100% - 10px) calc(100% - 40px) no-repeat,
+            linear-gradient(#000000, #000000) 50% 50%/calc(100% - 40px) calc(100% - 10px) no-repeat,
+            #000000;
     border-radius: 20px;
+
 }
 #infoScreen:hover{
     scale: 1.025;
     opacity: 1;
+    filter: blur(0px);
+    background: radial-gradient(circle at 100% 100%, #000000 0, #000000 16px, transparent 16px) 0% 0%/20px 20px no-repeat,
+            radial-gradient(circle at 0 100%, #000000 0, #000000 16px, transparent 16px) 100% 0%/20px 20px no-repeat,
+            radial-gradient(circle at 100% 0, #000000 0, #000000 16px, transparent 16px) 0% 100%/20px 20px no-repeat,
+            radial-gradient(circle at 0 0, #000000 0, #000000 16px, transparent 16px) 100% 100%/20px 20px no-repeat,
+            linear-gradient(#000000, #000000) 50% 50%/calc(100% - 8px) calc(100% - 40px) no-repeat,
+            linear-gradient(#000000, #000000) 50% 50%/calc(100% - 40px) calc(100% - 8px) no-repeat,
+            linear-gradient(135deg, #00e4ff 0%, #ff00f0 50%, #ffbc00 100%);
+    border-radius: 20px;
+    box-sizing: content-box;
 }
 #MelloLogga{
     flex-direction: column;
@@ -190,4 +193,8 @@ footer:hover{
     filter: hue-rotate(360deg);
     scale: 1.07;
 }
-    
+.prevent-select { /* This class makes divs and their text not selectable*/
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }

@@ -12,21 +12,17 @@
         <img src="../MelloLogga.png" alt="" id="MelloLogga">
         <img src="../MelloText.png" alt="" id="MelloText">
         <div id="tabs">
-            <div id="div1"><a href="index.html">Hemsida</a></div>
-            <div id="div2"><a href="artist.php">Artister</a></div>
-            <div id="div3"><a href="">Om oss</a></div>
             </div>
             
     </header>
     <main>
-        <nav>
-            <p>delttävling1</p>
-            <p>delttävling2</p>
-            <p>delttävling3</p>
-            <p>delttävling4</p>
-            
+    <nav class="prevent-select">
+            <p>Deltävling 1</p>
+            <p>Deltävling 2</p>
+            <p>Deltävling 3</p>
+            <p>Deltävling 4</p>
+            <p>Final</p>
         </nav>
-
 
         <div id="container">
             <?php
