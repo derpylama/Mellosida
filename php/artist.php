@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/artistcss.css">
-    <script src="js/artistjs.js"></script>
+    <link rel="stylesheet" href="css/Index.css">
 </head>
 <body>
     <header>
-        <img src="../MelloLogga.png" alt="" id="MelloLogga">
-        <img src="../MelloText.png" alt="" id="MelloText">
-        <div id="tabs">
-            </div>
-            
+        <img src="MelloLogga.png" alt="" id="MelloLogga">
+        <img src="MelloText.png" alt="" id="MelloText">
     </header>
     <main>
     <nav class="prevent-select">
