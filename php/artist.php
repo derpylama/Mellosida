@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/Index.css">
+    <link rel="stylesheet" href="css/artistcss.css">
 </head>
 <body>
     <header>
@@ -12,7 +12,7 @@
         <img src="MelloText.png" alt="" id="MelloText">
     </header>
     <main>
-    <nav class="prevent-select">
+        <nav class="prevent-select">
             <p>Deltävling 1</p>
             <p>Deltävling 2</p>
             <p>Deltävling 3</p>
