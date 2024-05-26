@@ -9,6 +9,11 @@ if(isset($_GET["deltavling"])){
     getDeltavlingsInfo("info");
 }
 
+
+
+if(isset($_GET["data"])){
+    saveAllData();
+}
 #Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
 function getDeltavlingsInfo($getData){
     global $mysqli; 
@@ -28,28 +33,19 @@ function getDeltavlingsInfo($getData){
     
     if($getData == "info"){
         echo json_encode($getInfo -> fetch_array());
-        return $getInfo;
+        return;
     }
 
 
-    /*
-    if($getData == "deltavling"){
-        return $deltavling;
-    }
-    */
 }
 
 
 function saveAllData(){
     global $mysqli;
     
-    if(!empty($_GET["deltavling"])){
-        $deltavling = $_GET["deltavling"];
+    $data = json_decode($_GET["data"]);
     
-    }
-    else{
-        $deltavling = "deltavling1";
-    }
+    $deltavling = $data -> deltavling;
     
     
     $saveArtist = $mysqli -> prepare("INSERT INTO artist (`namn`, `beskrivning`, `bildURL`) VALUES ( ?, ?, ?)");
@@ -58,42 +54,42 @@ function saveAllData(){
     $saveTidochDatum = $mysqli -> prepare("UPDATE `deltavlingar` SET `startTid`= ?,`slutTid`= ? ,`datum`= ? WHERE deltavlingsNamn = '$deltavling'");
 
     
-    if(!empty($_POST)){
-        if(!empty($_POST["artistNamn"]) && !empty($_POST["beskrivning"]) && !empty($_POST["bildURL"]) && !empty($_POST["latNamn"] && !empty($_POST["latskrivare"]) && !empty($_POST["ytURL"]))){
-            $artistNamn = $_POST["artistNamn"];
-            $beskrivning = $_POST["beskrivning"];
-            $bildURL = $_POST["bildURL"];
+    
+    if(!empty($_POST["artistNamn"]) && !empty($_POST["beskrivning"]) && !empty($_POST["bildURL"]) && !empty($_POST["latNamn"] && !empty($_POST["latskrivare"]) && !empty($_POST["ytURL"]))){
+        $artistNamn = $_POST["artistNamn"];
+        $beskrivning = $_POST["beskrivning"];
+        $bildURL = $_POST["bildURL"];
             
             
-            $saveArtist -> bind_param("sss", $artistNamn, $beskrivning, $bildURL);
-            $saveArtist -> execute();            
+        $saveArtist -> bind_param("sss", $artistNamn, $beskrivning, $bildURL);
+        $saveArtist -> execute();            
 
-            $latNamn = $_POST["latNamn"];
-            $ytURL = $_POST["ytURL"];
-            $latskrivare = $_POST["latskrivare"];
+        $latNamn = $_POST["latNamn"];
+        $ytURL = $_POST["ytURL"];
+        $latskrivare = $_POST["latskrivare"];
             
 
-            $saveBidrag -> bind_param("ssss", $latNamn, $ytURL, $latskrivare, $artistNamn);
-            $saveBidrag -> execute();
+        $saveBidrag -> bind_param("ssss", $latNamn, $ytURL, $latskrivare, $artistNamn);
+        $saveBidrag -> execute();
             
 
-            $saveJoin -> bind_param("ss", $deltavling, $artistNamn);
-            $saveJoin -> execute();
+        $saveJoin -> bind_param("ss", $deltavling, $artistNamn);
+        $saveJoin -> execute();
 
 
-        }
     }
+    
 
-    if(!empty($_POST)){
-        if(!empty($_POST["datum"]) && !empty($_POST["startTid"]) && !empty($_POST["slutTid"])){
-            $datum = $_POST["datum"];
-            $startTid = $_POST["startTid"];
-            $slutTid = $_POST["slutTid"];
+    
+    if(!empty($data -> datum) && !empty($data -> startTid) && !empty($data -> slutTid)){
+        $datum = $data -> datum;
+        $startTid = $data -> startTid;
+        $slutTid = $data -> slutTid;
 
-            $saveTidochDatum -> bind_param("sss", $startTid, $slutTid, $datum);
-            $saveTidochDatum -> execute();
-        }
+        $saveTidochDatum -> bind_param("sss", $startTid, $slutTid, $datum);
+        $saveTidochDatum -> execute();
     }
+    
 
 
 }

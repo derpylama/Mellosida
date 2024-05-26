@@ -10,14 +10,14 @@ window.onload = (e) => {
     }
     
     deltavlingDropDown.onchange = (e) => {
-        VisaDatabasinnehall(e.target.value);
         deltavling = e.target.value;
+        VisaDatabasinnehall(deltavling);
     }
 
- for (var button of sparButtons) {
+for (var button of sparButtons) {
     
     button.onclick = (e) => {
-        alert(deltavling)
+       SparaAllData(deltavling);
     }
 
  };
@@ -25,7 +25,8 @@ window.onload = (e) => {
 
 
 function VisaDatabasinnehall(dropdownVarde){
-    url = "../php/funktioner.php?deltavling=" + {deltavling : dropdownVarde};
+
+    url = "../php/funktioner.php?deltavling="+dropdownVarde;
     deltagarLista = document.getElementById("deltagarLista")
         fetch(url).then(answer => answer.json()).then((data) =>{
             console.log(data);
@@ -56,12 +57,27 @@ function VisaDatabasinnehall(dropdownVarde){
 
                 deltagare[0].remove();
 
-                console.log(deltagare);
+               
             }
 
         });
 }
 
 function SparaAllData(deltavling){
-    
+
+    inputelement = document.getElementsByTagName("input");
+    inputObj = {};
+    inputObj.deltavling = deltavling;
+    [...inputelement].forEach(element => {
+  
+        if(element.type != "button" && element.value != null){
+            namn = element.name;
+            data = element.value;
+            inputObj[namn] = data;
+        };
+    });
+    console.log(inputObj);
+
+    url = "../php/funktioner.php?data=" + JSON.stringify(inputObj);
+    fetch(url).then(answer => answer.json()).then(console.log(data));
 }
