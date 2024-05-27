@@ -11,6 +11,7 @@ window.onload = (e) => {
     
     deltavlingDropDown.onchange = (e) => {
         deltavling = e.target.value;
+        tabortAllaDeltagare();
         VisaDatabasinnehall(deltavling);
     }
 
@@ -29,35 +30,48 @@ function VisaDatabasinnehall(dropdownVarde){
     url = "../php/funktioner.php?deltavling="+dropdownVarde;
     deltagarLista = document.getElementById("deltagarLista")
         fetch(url).then(answer => answer.json()).then((data) =>{
-            console.log(data);
             
             
             if(data != null){
 
-                div = document.createElement("div");
-                div.className = "deltagare"
-                deltagarLista.appendChild(div);
-
-                img = document.createElement("img");
-                img.src = data["bildURL"];
-                img.className = "deltagarBild";
-
-                pBeskrivning = document.createElement("p");
-                pBeskrivning.innerHTML = data["beskrivning"];
-
-                artistNamn = document.createElement("h2");
-                artistNamn.innerHTML = data["artistNamn"];
                 
-                div.appendChild(artistNamn);
-                div.appendChild(pBeskrivning);
-                div.appendChild(img);
+                startTid = document.getElementById("startTid");
+                slutTid = document.getElementById("slutTid");
+
+                data.forEach(data => {
+
+                    
+                    startTid.value = data["startTid"];
+                    slutTid.value = data["slutTid"];
+                    
+                    console.log(data);
+                    div = document.createElement("div");
+                    div.className = "deltagare"
+                    deltagarLista.appendChild(div);
+
+                    img = document.createElement("img");
+                    img.src = data["bildURL"];
+                    img.className = "deltagarBild";
+
+                    pBeskrivning = document.createElement("p");
+                    pBeskrivning.innerHTML = data["beskrivning"];
+
+                    artistNamn = document.createElement("h2");
+                    artistNamn.innerHTML = data["artistNamn"];
+
+                    video = document.createElement("iframe");
+                    video.width = 150;
+                    video.height = 100;
+                    video.src = data["url"];
+                    
+                    div.appendChild(artistNamn);
+                    div.appendChild(pBeskrivning);
+                    div.appendChild(img);
+                    div.appendChild(video);
+                })
             }
             else{
-                deltagare = document.getElementsByClassName("deltagare");
-
-                deltagare[0].remove();
-
-               
+               tabortAllaDeltagare();
             }
 
         });
@@ -79,5 +93,18 @@ function SparaAllData(deltavling){
     console.log(inputObj);
 
     url = "../php/funktioner.php?data=" + JSON.stringify(inputObj);
-    fetch(url).then(answer => answer.json()).then(console.log(data));
+    fetch(url).then(window.location.reload());
+}
+
+function tabortAllaDeltagare(){
+    deltagare = document.getElementsByClassName("deltagare");
+    startTid = document.getElementById("startTid");
+    slutTid = document.getElementById("slutTid");
+
+    startTid.value = "";
+    slutTid.value = "";
+
+    [...deltagare].forEach(element =>{
+        element.remove();
+    })
 }

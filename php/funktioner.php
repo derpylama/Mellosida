@@ -32,7 +32,7 @@ function getDeltavlingsInfo($getData){
 
     
     if($getData == "info"){
-        echo json_encode($getInfo -> fetch_array());
+        echo json_encode($getInfo -> fetch_all(MYSQLI_ASSOC));
         return;
     }
 
@@ -55,18 +55,18 @@ function saveAllData(){
 
     
     
-    if(!empty($_POST["artistNamn"]) && !empty($_POST["beskrivning"]) && !empty($_POST["bildURL"]) && !empty($_POST["latNamn"] && !empty($_POST["latskrivare"]) && !empty($_POST["ytURL"]))){
-        $artistNamn = $_POST["artistNamn"];
-        $beskrivning = $_POST["beskrivning"];
-        $bildURL = $_POST["bildURL"];
+    if(!empty($data -> artistNamn) && !empty($data -> beskrivning) && !empty($data -> bildURL) && !empty($data -> latNamn && !empty($data -> latskrivare) && !empty($data -> ytURL))){
+        $artistNamn = $data -> artistNamn;
+        $beskrivning = $data -> beskrivning;
+        $bildURL = $data -> bildURL;
             
             
         $saveArtist -> bind_param("sss", $artistNamn, $beskrivning, $bildURL);
         $saveArtist -> execute();            
 
-        $latNamn = $_POST["latNamn"];
-        $ytURL = $_POST["ytURL"];
-        $latskrivare = $_POST["latskrivare"];
+        $latNamn = $data -> latNamn;
+        $ytURL = $data -> ytURL;
+        $latskrivare = $data -> latskrivare;
             
 
         $saveBidrag -> bind_param("ssss", $latNamn, $ytURL, $latskrivare, $artistNamn);

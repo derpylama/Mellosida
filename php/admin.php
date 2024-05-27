@@ -39,6 +39,7 @@ if(empty($result)){
 <body>
     <main>
         <section>
+            
             <nav>    
                 <select id="deltavling">
                     <option value="deltavling1">Deltävling 1</option>
@@ -56,7 +57,7 @@ if(empty($result)){
                     <input type="time" name = "startTid" id = "startTid">
 
                     <label for="slutTid">Välj slut tid</label>
-                    <input type="time" name = "slutTid">
+                    <input type="time" name = "slutTid" id="slutTid">
 
                     <input type="hidden" name="anvandarnamn" value="<?php echo $_POST["anvandarnamn"] ?>">
                     <input type="hidden" name="losenord" value="<?php echo $_POST["losenord"] ?>">
@@ -89,7 +90,7 @@ if(empty($result)){
         </section >
 
         <section id ="deltagarLista">
-
+            
         </section>
 
 

@@ -89,5 +89,12 @@ label{
 }
 
 .deltagare{
-    
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.deltagarBild{
+    width: 150px;
+    height: auto;
 }
