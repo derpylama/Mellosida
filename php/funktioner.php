@@ -9,10 +9,12 @@ if(isset($_GET["deltavling"])){
     getDeltavlingsInfo("info");
 }
 
-
-
 if(isset($_GET["data"])){
     saveAllData();
+}
+
+if(isset($_GET["delete"])){
+    deleteDeltagare();
 }
 #Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
 function getDeltavlingsInfo($getData){
@@ -92,4 +94,14 @@ function saveAllData(){
     
 
 
+}
+
+
+function deleteDeltagare (){
+    global $mysqli;
+    $artist = $_GET["delete"];
+
+    $mysqli -> query("DELETE FROM `artist` WHERE namn = '$artist'");
+    $mysqli -> query("DELETE FROM `bidrag` WHERE artistNamn = '$artist'");
+    $mysqli -> query("DELETE FROM `bidragdeltavlingjoin` WHERE artistNamnJoin = '$artist'");
 }

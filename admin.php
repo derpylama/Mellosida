@@ -4,7 +4,6 @@
 
 $mysqli = new mysqli("localhost", "root", "", "mello");
 
-require "funktioner.php";
 
 $loginQuery = $mysqli -> prepare("SELECT * FROM admininlogg WHERE losenord = ? AND anvandarnamn = ?");
 
@@ -21,7 +20,7 @@ $loginQuery -> execute();
 $result = $loginQuery -> get_result() -> fetch_assoc();
 
 if(empty($result)){
-    header("Location: admininlogg.php");
+    header("Location: php/admininlogg.php");
     exit();
 }
 
@@ -33,8 +32,8 @@ if(empty($result)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <script src="../js/admin.js"></script>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/admin.js"></script>
 </head>
 <body>
     <main>

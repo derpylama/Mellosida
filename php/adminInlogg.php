@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id = "inlogg">    
-            <form action="admin.php" method = "POST">
+            <form action="../admin.php" method = "POST">
                 <input type="text" name="anvandarnamn" placeholder="användanamn">
                 <input type="text" name="losenord" placeholder="lösenord">
                 <input type="submit" class="submit">

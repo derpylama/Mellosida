@@ -55,6 +55,7 @@ section{
     padding: 5px;
     border-radius: 5px;
     align-self: center;
+    background-color: gray;
 }
 
 main{

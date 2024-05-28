@@ -34,17 +34,17 @@ function VisaDatabasinnehall(dropdownVarde){
             
             if(data != null){
 
-                
+
                 startTid = document.getElementById("startTid");
                 slutTid = document.getElementById("slutTid");
+                datum = document.getElementById("datum");
 
                 data.forEach(data => {
 
-                    
                     startTid.value = data["startTid"];
                     slutTid.value = data["slutTid"];
+                    datum.value = data["datum"];
                     
-                    console.log(data);
                     div = document.createElement("div");
                     div.className = "deltagare"
                     deltagarLista.appendChild(div);
@@ -63,11 +63,21 @@ function VisaDatabasinnehall(dropdownVarde){
                     video.width = 150;
                     video.height = 100;
                     video.src = data["url"];
+
+                    deleteknapp = document.createElement("button");
+                    deleteknapp.innerHTML = "delete";
+                    deleteknapp.className = "submit";
+
+                    deleteknapp.onclick = (e) => {
+                        tabortDelragareDatabas(data["artistNamn"]);
+                    }
+
                     
                     div.appendChild(artistNamn);
                     div.appendChild(pBeskrivning);
                     div.appendChild(img);
                     div.appendChild(video);
+                    div.appendChild(deleteknapp);
                 })
             }
             else{
@@ -90,7 +100,7 @@ function SparaAllData(deltavling){
             inputObj[namn] = data;
         };
     });
-    console.log(inputObj);
+    
 
     url = "../php/funktioner.php?data=" + JSON.stringify(inputObj);
     fetch(url).then(window.location.reload());
@@ -100,11 +110,19 @@ function tabortAllaDeltagare(){
     deltagare = document.getElementsByClassName("deltagare");
     startTid = document.getElementById("startTid");
     slutTid = document.getElementById("slutTid");
+    datum = document.getElementById("datum");
 
     startTid.value = "";
     slutTid.value = "";
+    datum.value = "";
 
     [...deltagare].forEach(element =>{
         element.remove();
     })
+}
+
+function tabortDelragareDatabas(artist){
+
+    url = "../php/funktioner.php?delete=" + artist;
+    fetch(url).then(alert("Tog bort "+ artist)).then(window.location.reload());
 }
