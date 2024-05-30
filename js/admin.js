@@ -27,7 +27,7 @@ for (var button of sparButtons) {
 
 function VisaDatabasinnehall(dropdownVarde){
 
-    url = "../php/funktioner.php?deltavling="+dropdownVarde;
+    url = "php/funktioner.php?deltavling="+dropdownVarde;
     deltagarLista = document.getElementById("deltagarLista")
         fetch(url).then(answer => answer.json()).then((data) =>{
             
@@ -102,7 +102,7 @@ function SparaAllData(deltavling){
     });
     
 
-    url = "../php/funktioner.php?data=" + JSON.stringify(inputObj);
+    url = "php/funktioner.php?data=" + JSON.stringify(inputObj);
     fetch(url).then(window.location.reload());
 }
 
@@ -123,6 +123,6 @@ function tabortAllaDeltagare(){
 
 function tabortDelragareDatabas(artist){
 
-    url = "../php/funktioner.php?delete=" + artist;
+    url = "php/funktioner.php?delete=" + artist;
     fetch(url).then(alert("Tog bort "+ artist)).then(window.location.reload());
 }
