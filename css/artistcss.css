@@ -211,4 +211,9 @@ footer:hover{
     height: 400px;
 }
 
-button{}
+button{
+    color: black;
+    height: auto;
+    width: auto;
+    padding: 5px;
+}

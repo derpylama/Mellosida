@@ -29,11 +29,13 @@ window.onload = (e) => {
 
                     button = document.createElement("button");
                     button.className = "button";
+                    button.innerHTML = "Rösta";
                     
 
                     div.appendChild(artistNamn);
                     div.appendChild(img);
                     div.appendChild(video);
+                    div.appendChild(button);
 
                     });    
                 });
