@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>artist</title>
+    <link rel="stylesheet" href="../css/artistcss.css">
+    <script src="../js/artistjs.js"></script>
+</head>
+<body>
+    <header>
+        <img id="MelloLogga" src="../MelloLogga.png" alt="">
+        <img id="MelloText" src="../MelloText.png" alt="">
+    </header>
+    <main>
+        <nav class="prevent-select">
+            <p id="deltavling1">Deltävling 1</p>
+            <p id="deltavling2">Deltävling 2</p>
+            <p id="deltavling3">Deltävling 3</p>
+            <p id="deltavling4">Deltävling 4</p>
+            <p id="final">Final</p>
+        </nav>
+
+        <div id="mainInfo">
+
+
+        </div>
+    </main>
+    <footer>
+        <p>Maila oss:</p>
+        <p>FAQ</p>
+        <p>Melodifestivalen &copy; 2024 All rights reserved</p>
+    </footer>
+    <a id="AdminL" href="adminInlogg.php">adminInlogg</a>
+</body>
+</html>
