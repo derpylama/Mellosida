@@ -105,3 +105,18 @@ function deleteDeltagare (){
     $mysqli -> query("DELETE FROM `bidrag` WHERE artistNamn = '$artist'");
     $mysqli -> query("DELETE FROM `bidragdeltavlingjoin` WHERE artistNamnJoin = '$artist'");
 }
+
+function increaseVotes(){
+    global $mysqli;
+
+    $artist = $_GET["artist"];
+
+    $votes = $mysqli -> query("SELECT roster FROM `bidrag` WHERE artistNamn = '$artist'");
+    $votes = $votes -> fetch_assoc();
+
+    $votes = $votes ++;
+
+    $mysqli -> query("UPDATE `bidrag` SET `roster`= '$votes' WHERE artistNamn = '$artist'");
+
+    echo $votes;
+}

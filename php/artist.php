@@ -22,8 +22,6 @@
         </nav>
 
         <div id="mainInfo">
-
-
         </div>
     </main>
     <footer>
@@ -31,6 +29,5 @@
         <p>FAQ</p>
         <p>Melodifestivalen &copy; 2024 All rights reserved</p>
     </footer>
-    <a id="AdminL" href="adminInlogg.php">adminInlogg</a>
 </body>
 </html>
