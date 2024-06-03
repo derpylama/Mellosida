@@ -56,12 +56,13 @@ section{
     border-radius: 5px;
     align-self: center;
     background-color: gray;
+    cursor: pointer;
 }
 
 main{
     display: flex;
     width: 90%;
-    height: 90%;
+    height: 100%;
     background-color: rgb(72, 24, 32);
     border-radius: 10px;
     justify-content: space-between;
@@ -93,6 +94,7 @@ label{
     display: flex;
     flex-wrap: wrap;
     font-size: 12px;
+    flex-direction: column;
 }
 
 .deltagarBild{

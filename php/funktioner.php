@@ -6,7 +6,7 @@ $mysqli = new mysqli("localhost", "root", "", "mello");
 
 
 if(isset($_GET["deltavling"])){
-    getDeltavlingsInfo("info");
+    getDeltavlingsInfo();
 }
 
 if(isset($_GET["data"])){
@@ -16,8 +16,20 @@ if(isset($_GET["data"])){
 if(isset($_GET["delete"])){
     deleteDeltagare();
 }
+
+if(isset($_GET["artist"])){
+    increaseVotes();
+}
+
+if(isset($_GET["tid"])){
+    getAllDeltavlingTid();
+}
+
+if(isset($_GET["finalist"])){
+    populateFinal();
+};
 #Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
-function getDeltavlingsInfo($getData){
+function getDeltavlingsInfo(){
     global $mysqli; 
     
     
@@ -33,10 +45,10 @@ function getDeltavlingsInfo($getData){
     $getInfo = $mysqli -> query("SELECT * FROM artist JOIN bidragdeltavlingjoin ON artist.namn = bidragdeltavlingjoin.artistNamnJoin JOIN deltavlingar ON bidragdeltavlingjoin.deltavlingNamnJoin = deltavlingar.deltavlingsNamn JOIN bidrag ON artist.namn = bidrag.artistNamn WHERE deltavlingar.deltavlingsNamn = '$deltavling'");
 
     
-    if($getData == "info"){
-        echo json_encode($getInfo -> fetch_all(MYSQLI_ASSOC));
-        return;
-    }
+    
+    echo json_encode($getInfo -> fetch_all(MYSQLI_ASSOC));
+        
+    
 
 
 }
@@ -111,12 +123,26 @@ function increaseVotes(){
 
     $artist = $_GET["artist"];
 
-    $votes = $mysqli -> query("SELECT roster FROM `bidrag` WHERE artistNamn = '$artist'");
+    $votes = $mysqli -> query("SELECT roster FROM bidrag WHERE artistNamn = '$artist'");
     $votes = $votes -> fetch_assoc();
+    $voteCount = $votes["roster"];
+    $voteCount += 1;
 
-    $votes = $votes ++;
+    $mysqli -> query("UPDATE bidrag SET roster= '$voteCount' WHERE artistNamn = '$artist'");
+}
 
-    $mysqli -> query("UPDATE `bidrag` SET `roster`= '$votes' WHERE artistNamn = '$artist'");
+function getAllDeltavlingTid(){
+    global $mysqli;
 
-    echo $votes;
+    $deltavling = $mysqli -> query("SELECT * FROM deltavlingar");
+    echo json_encode($deltavling -> fetch_all(MYSQLI_ASSOC));
+}
+
+function populateFinal(){
+    global $mysqli;
+
+    $finalist = $_GET["finalist"];
+    
+    $mysqli -> query("INSERT INTO bidragdeltavlingjoin (deltavlingNamnJoin, artistNamnJoin) VALUES ('final','$finalist')");
+    echo json_encode($finalist);
 }

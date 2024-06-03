@@ -38,15 +38,15 @@ if(empty($result)){
 <body>
     <main>
         <section>
-            
             <nav>    
                 <select id="deltavling">
                     <option value="deltavling1">Deltävling 1</option>
                     <option value="deltavling2">Deltävling 2</option>
                     <option value="deltavling3">Deltävling 3</option>
                     <option value="deltavling4">Deltävling 4</option>
+                    <option value="final">Final</option>
                 </select>
-                <form action="" id="DateTime" method = "post">
+                <form id="DateTime" method = "post">
                     
 
                     <label for="datum">Välj datum och tid för denna deltävling</label>
@@ -79,12 +79,13 @@ if(empty($result)){
                 <label for="Beskrivning">Beskrivning</label>
                 <input type="text" name="beskrivning" id="Beskrivning">
                 <label for="BildUrl">Bild URL</label>
-                <input type="text" name ="bildURL" id = "BildURL">
+                <input type="text" name="bildURL" id="BildURL">
 
                 <input type="hidden" name="anvandarnamn" value="<?php echo $_POST["anvandarnamn"] ?>">
                 <input type="hidden" name="losenord" value="<?php echo $_POST["losenord"] ?>">
 
                 <input type="button" class ="submit save" value="Spara">
+                <input type="button" class="submit" value="Populera final" id="populate">
             </form>
         </section >
 

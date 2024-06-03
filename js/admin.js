@@ -1,8 +1,9 @@
 var deltavling;
-
+var finalister;
 window.onload = (e) => {
     deltavlingDropDown = document.getElementById("deltavling");
     sparButtons = document.getElementsByClassName("save");
+    populateButton = document.getElementById("populate");
     VisaDatabasinnehall(deltavlingDropDown.value);
 
     if(deltavling == undefined){
@@ -21,6 +22,10 @@ for (var button of sparButtons) {
        SparaAllData(deltavling);
     }
 
+ };
+
+ populateButton.onclick = (e) => {
+    populateFinal();
  };
 };
 
@@ -125,4 +130,34 @@ function tabortDelragareDatabas(artist){
 
     url = "php/funktioner.php?delete=" + artist;
     fetch(url).then(alert("Tog bort "+ artist)).then(window.location.reload());
+}
+
+function populateFinal(){
+    
+    deltavlingar = ["deltavling1","deltavling2","deltavling3","deltavling4"];
+    finalister = [];
+    
+    deltavlingar.forEach(deltavling =>{
+        url = "php/funktioner.php?deltavling=" + deltavling;
+        fetch(url).then(answer => answer.json()).then(data => {
+            
+            roster = [];
+            data.forEach(element => {
+                roster.push(element["roster"])
+            });
+            
+            roster.sort();
+            console.log(roster);
+            data.forEach(artist => {
+                if(artist["roster"] == roster[0]){
+                    finalister.push(artist["artistNamn"])
+                    fetch("php/funktioner.php?finalist=" + artist["artistNamn"]).then(answer => answer.json()).then(data => {console.log(data)})
+                }
+                    
+            })
+          console.log(finalister);  
+        })
+        
+
+    })
 }
