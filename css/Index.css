@@ -28,6 +28,8 @@ body{
     transition: 500ms;
     animation: BackgroundAnim 1280s linear infinite;
     background-size: 400%;
+    height: auto;
+    width: auto;
 }
 *{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -106,6 +108,7 @@ nav p:active{
 main{
     display: flex;
     flex-wrap: wrap;
+    height: 1080px;
 }
 main div p{
     display: flex;
