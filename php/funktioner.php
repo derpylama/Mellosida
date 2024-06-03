@@ -1,8 +1,6 @@
 <?php
-// Server koppling
-//$mysqli = new mysqli("bushcan.ntigskovde.se", "ntigskov_bushcan", "U8Tv5U9MMr2uaEzQ6A91", "ntigskov_bushcan");
+$mysqli = new mysqli("bushcan.ntigskovde.se", "ntigskov_bushcan", "U8Tv5U9MMr2uaEzQ6A91", "ntigskov_bushcan");
 
-$mysqli = new mysqli("localhost", "root", "", "mello");
 
 
 if(isset($_GET["deltavling"])){
@@ -28,7 +26,7 @@ if(isset($_GET["tid"])){
 if(isset($_GET["finalist"])){
     populateFinal();
 };
-#Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
+//Hämtar ur all information från databasen, Kan ge både deltävlings id som svar eller all data.
 function getDeltavlingsInfo(){
     global $mysqli; 
     
@@ -53,7 +51,7 @@ function getDeltavlingsInfo(){
 
 }
 
-
+//Sparar ner all data till databasen
 function saveAllData(){
     global $mysqli;
     
@@ -108,7 +106,7 @@ function saveAllData(){
 
 }
 
-
+//Tarbort deltagare från databasen
 function deleteDeltagare (){
     global $mysqli;
     $artist = $_GET["delete"];
@@ -138,6 +136,7 @@ function getAllDeltavlingTid(){
     echo json_encode($deltavling -> fetch_all(MYSQLI_ASSOC));
 }
 
+//Populerar finalen vid kanpp tryck på admin sidan
 function populateFinal(){
     global $mysqli;
 

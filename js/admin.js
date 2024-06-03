@@ -29,7 +29,7 @@ for (var button of sparButtons) {
  };
 };
 
-
+//Genererar element för att visa deltagare
 function VisaDatabasinnehall(dropdownVarde){
 
     url = "php/funktioner.php?deltavling="+dropdownVarde;
@@ -91,7 +91,7 @@ function VisaDatabasinnehall(dropdownVarde){
 
         });
 }
-
+//Fetch till att spara deltagare
 function SparaAllData(deltavling){
 
     inputelement = document.getElementsByTagName("input");
@@ -111,6 +111,7 @@ function SparaAllData(deltavling){
     fetch(url).then(window.location.reload());
 }
 
+//Rensar admin sidan från delragare
 function tabortAllaDeltagare(){
     deltagare = document.getElementsByClassName("deltagare");
     startTid = document.getElementById("startTid");
@@ -126,6 +127,7 @@ function tabortAllaDeltagare(){
     })
 }
 
+//Fetch funktion för att tabort deltagare från databas
 function tabortDelragareDatabas(artist){
 
     url = "php/funktioner.php?delete=" + artist;
