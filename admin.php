@@ -33,6 +33,7 @@ if(empty($result)){
     <title>Document</title>
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/admin.js"></script>
+    <link rel="icon" href="MelloLogga.png">
 </head>
 <body>
     <main>
