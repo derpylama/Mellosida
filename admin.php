@@ -19,7 +19,7 @@ $loginQuery -> execute();
 $result = $loginQuery -> get_result() -> fetch_assoc();
 
 if(empty($result)){
-    header("Location:php/admininlogg.php");
+    header("Location: php/adminInlogg.php");
     exit();
 }
 
