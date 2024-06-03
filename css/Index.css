@@ -142,9 +142,11 @@ footer:hover{
     }
 }
 #infoScreen{
+    display: flex;
+    flex-wrap: wrap;
     opacity: 40%;
-    width: 600px;
-    height: 200px;
+    width: 500px;
+    height: 400px;
     transition: 300ms;
     background-color: rgb(0, 0, 0);
     filter: blur(2px);
@@ -171,6 +173,16 @@ footer:hover{
             linear-gradient(135deg, #00e4ff 0%, #ff00f0 50%, #ffbc00 100%);
     border-radius: 20px;
     box-sizing: content-box;
+}
+
+#infoScreen div{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+#infoScreen div p{
+    margin: 0;
 }
 #MelloLogga{
     flex-direction: column;
