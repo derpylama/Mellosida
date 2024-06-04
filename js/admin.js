@@ -149,15 +149,15 @@ function populateFinal(){
             });
             
             roster.sort();
-            console.log(roster);
+
             data.forEach(artist => {
                 if(artist["roster"] == roster[0]){
                     finalister.push(artist["artistNamn"])
-                    fetch("php/funktioner.php?finalist=" + artist["artistNamn"]).then(answer => answer.json()).then(data => {console.log(data)})
+                    fetch("php/funktioner.php?finalist=" + artist["artistNamn"])
                 }
                     
             })
-          console.log(finalister);  
+
         })
         
 

@@ -9,7 +9,6 @@ window.onload = (e) => {
     }
 
     fetch("php/funktioner.php?tid=true").then(answer => answer.json()).then(data => {
-        console.log(data);
         infoScreen = document.getElementById("infoScreen");
 
         data.forEach(deltavling => {
@@ -24,6 +23,9 @@ window.onload = (e) => {
             pTime.innerHTML = deltavling["startTid"] + "-" + deltavling["slutTid"];
             div.appendChild(pTime);
 
+            pDate = document.createElement("p");
+            pDate.innerHTML = deltavling["datum"];
+            div.appendChild(pDate);
         });
     })
 }

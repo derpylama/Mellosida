@@ -98,7 +98,6 @@ function isActive() {
         else{
             active = false;
         }
-        console.log(active)
     })
 }
 
@@ -115,7 +114,6 @@ function vote(e){
             amountOfVotes = localStorage.getItem(competition);
             amountOfVotes = parseInt(amountOfVotes);
             amountOfVotes += 1;
-            console.log(amountOfVotes)
             localStorage.setItem(competition, amountOfVotes);
 
         }
